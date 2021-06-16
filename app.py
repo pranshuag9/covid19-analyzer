@@ -1,33 +1,16 @@
 from flask import Flask, render_template, request, jsonify
 from keras.models import load_model
-import cv2
 import numpy as np
 import base64
 from PIL import Image
 import io
 
-img_size = 100
+from app_utils import preprocess
+from config import MODEL_PATH, label_dict
 
 app = Flask(__name__)
 
-model = load_model('model/model-015.model')
-
-label_dict = {0: 'Covid19 Negative', 1: 'Covid19 Positive'}
-
-
-def preprocess(img):
-	img = np.array(img)
-
-	if (img.ndim == 3):
-		gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
-	else:
-		gray = img
-
-	gray = gray / 255
-	resized = cv2.resize(gray, (img_size, img_size))
-	reshaped = resized.reshape(1, img_size, img_size)
-	return reshaped
-
+model = load_model(MODEL_PATH)
 
 @app.route("/")
 def index():
@@ -36,27 +19,44 @@ def index():
 
 @app.route("/predict", methods=["POST"])
 def predict():
-	print('HERE')
-	message = request.get_json(force=True)
-	encoded = message['image']
-	decoded = base64.b64decode(encoded)
-	dataBytesIO = io.BytesIO(decoded)
-	dataBytesIO.seek(0)
-	image = Image.open(dataBytesIO)
+	print('Initiating Prediction')
+	try:
+		request_json = request.get_json(force=True)
+		encoded_img = request_json['image']
+		decoded_img= base64.b64decode(encoded_img)
+		dataBytesIO = io.BytesIO(decoded_img)
+		dataBytesIO.seek(0)
 
-	test_image = preprocess(image)
+		image = Image.open(dataBytesIO)
 
-	prediction = model.predict(test_image)
-	result = np.argmax(prediction, axis=1)[0]
-	accuracy = float(np.max(prediction, axis=1)[0])
+		test_image = preprocess(image)
 
-	label = label_dict[result]
+		prediction = model.predict(test_image)
+		result = np.argmax(prediction, axis=1)[0]
+		accuracy = float(np.max(prediction, axis=1)[0])
 
-	print(prediction, result, accuracy)
+		label = label_dict[result]
 
-	response = {'prediction': {'result': label, 'accuracy': accuracy}}
+		print(prediction, result, accuracy)
 
-	return jsonify(response)
+		response = {
+			'prediction': {
+				'result': label,
+				'accuracy': accuracy
+			}
+		}
+
+		return jsonify(response), 200
+	except Exception as e:
+		error_str = str(e)
+		response = {
+			"message": f"Error occurred while predicting, {error_str}",
+			"error": True,
+			"success": False,
+			"data": None,
+			"type": None
+		}
+		return response, 400
 
 
 app.run(debug=True)
