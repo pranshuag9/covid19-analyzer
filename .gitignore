@@ -2,3 +2,5 @@
 /.idea
 *.npy
 __pycache__/
+/dataset
+dataset/*
