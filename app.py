@@ -23,7 +23,8 @@ def predict():
 	try:
 		request_json = request.get_json(force=True)
 		encoded_img = request_json['image']
-		decoded_img= base64.b64decode(encoded_img)
+		decoded_img = base64.b64decode(encoded_img)
+
 		dataBytesIO = io.BytesIO(decoded_img)
 		dataBytesIO.seek(0)
 
@@ -40,10 +41,14 @@ def predict():
 		print(prediction, result, accuracy)
 
 		response = {
-			'prediction': {
+			"message": "Successfully generated the predictions.",
+			"prediction": {
 				'result': label,
 				'accuracy': accuracy
-			}
+			},
+			"error": False,
+			"success": True,
+			"type": "json"
 		}
 
 		return jsonify(response), 200
