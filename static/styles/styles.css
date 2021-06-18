@@ -1,4 +1,5 @@
 body{
+  margin : 0;
   background-image: url(../images/main-background.jpg);
   background-size: cover;
   background-attachment: fixed;
@@ -12,6 +13,7 @@ body{
   box-shadow: 0 0 1rem 0 rgba(0, 0, 0, 0.2);
   position:relative;
   background: inherit;
+  text-align: center;
 }
 
 .container:before{
@@ -30,6 +32,95 @@ div{
 }
 
 .heading{
-  font-family: 'Lato', sans-serif;
-  font-weight: 700;
+  font-family: "Lato";
+  font-weight: 900;
+  color: #F9F9F9;
+}
+
+.button{
+      transform: translate(50%, 0);
+			border : none;
+			outline : none;
+			margin-top : 1em;
+			padding : 1em 1em;
+			border-radius : 4px;
+			font-family : 'Lato', Verdana, sans-serif;
+			font-weight : 900;
+			text-transform : uppercase;
+			letter-spacing : .15em;
+			background-color : transparent;
+			border : 3px solid #F2F2F8;
+			color : #F2F2F8;
+			transform : translate3D(0, 0, 0);
+			transition : color .3s, background-color .3s, transform .15s;
+			cursor : pointer;
+}
+.button:hover{
+				color : #F2F2F8;
+				background-color : #00917C;
+        border: #00917c;
+				outline : none;
+}
+.button:focus{
+				outline : none;
+}
+.button:active{
+				transform : translate3D(0, 1px, 0);
+				outline: none;
+}
+.result{
+  visibility: hidden;
+}
+        
+#image-selector{
+    width: 0.1px;
+    height: 0.1px;
+    opacity: 0;
+    overflow: hidden;
+    position: absolute;
+    z-index: -1;
+}
+#image-selector + label{
+      border : none;
+			outline : none;
+			margin-top : 1em;
+			padding : 1em 1em;
+			border-radius : 4px;
+			font-family : 'Lato', Verdana, sans-serif;
+			font-weight : 900;
+			text-transform : uppercase;
+			letter-spacing : .15em;
+			background-color : transparent;
+			border : 3px solid #F2F2F8;
+			color : #F2F2F8;
+			transform : translate3D(0, 0, 0);
+			transition : color .3s, background-color .3s, transform .15s;
+			cursor : pointer;
+}
+#image-selector:focus + label,
+#image-selector + label:hover {
+        color : #212121;
+				background-color : #F2F2F8;
+				outline : none;
+}
+
+#image-selector:focus + label{
+  outline: none;
+}
+#image-selector:active + label{
+  transform : translate3D(0, 2px, 0);
+	outline: none;
+}
+
+#selected-image{
+  margin: 15px 0;
+  max-width:400px;
+  max-height: 400px;
+}
+
+.predict{
+  position: absolute;
+  left: 50%;
+  bottom: 20px;
+  transform: translateX(-50%);
 }
