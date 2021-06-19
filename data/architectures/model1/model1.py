@@ -10,12 +10,17 @@ def get_model():
     input_shape = data.shape[1:]  # 50,50,1
     inp = Input(shape=input_shape)
     convs = []
-
     parrallel_kernels = [3, 5, 7]
 
-    for k in range(len(parrallel_kernels)):
-        conv = Conv2D(128, parrallel_kernels[k], padding='same', activation='relu',
-                      input_shape=input_shape, strides=1)(inp)
+    for kernel_size in parrallel_kernels:
+        conv = Conv2D(
+            filters=128,
+            kernel_size=kernel_size,
+            padding='same',
+            activation='relu',
+            input_shape=input_shape,
+            strides=1
+        )(inp)
         convs.append(conv)
 
     out = Concatenate()(convs)
