@@ -7,8 +7,8 @@ var loadFile = function(event){
       }
       $(".result").css("visibility","hidden")
       $(".button").css("visibility","visible");
-
 };
+
 $("#image-selector").change(function() {
     let reader = new FileReader();
     reader.onload = function(e) {
@@ -28,14 +28,11 @@ $("#predict-button").click(function(){
     }
     console.log(message);
     $.post("http://127.0.0.1:5000/predict", JSON.stringify(message), function(response){
-    let prediction = response.prediction.result;
-    let percentage = response.prediction.accuracy.toFixed(2)*100;
-    $(".result").text(percentage +"% chances of " + prediction);
-    $(".button").css("visibility","hidden");
-    $(".result").css("visibility","visible");
-    console.log()
-    //$(".probability").text(response.prediction.accuracy.toFixed(2));
-    console.log(response);
+        let prediction = response.data.result;
+        let percentage = response.data.accuracy.toFixed(2)*100;
+        $(".result").text(percentage +"% chances of " + prediction);
+        $(".button").css("visibility","hidden");
+        $(".result").css("visibility","visible");
     });
 });
 
