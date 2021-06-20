@@ -5,8 +5,8 @@ var loadFile = function(event){
     image.onload = function() {
         URL.revokeObjectURL(image.src) // free memory
       }
-      $(".result").css("visibility","hidden")
-      $(".button").css("visibility","visible");
+      $(".result").css("visibility","hidden");
+      $("#predict-button").css("visibility","visible");  //for predict button
 };
 
 $("#image-selector").change(function() {
@@ -31,7 +31,7 @@ $("#predict-button").click(function(){
         let prediction = response.data.result;
         let percentage = response.data.accuracy.toFixed(2)*100;
         $(".result").text(percentage +"% chances of " + prediction);
-        $(".button").css("visibility","hidden");
+        $("#predict-button").css("visibility","hidden");
         $(".result").css("visibility","visible");
     });
 });
