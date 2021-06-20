@@ -1,8 +1,8 @@
-from keras.layers import Dense, Dropout, Flatten
-from keras.layers import Conv2D,Activation,MaxPooling2D
-from keras.layers import Concatenate
-from keras import Input
-from keras.models import Model, Sequential
+from tensorflow.keras.layers import Dense, Dropout, Flatten
+from tensorflow.keras.layers import Conv2D,Activation,MaxPooling2D
+from tensorflow.keras.layers import Concatenate
+from tensorflow.keras import Input
+from tensorflow.keras.models import Model, Sequential
 
 def get_model(input_shape):
     inp = Input(shape=input_shape)
