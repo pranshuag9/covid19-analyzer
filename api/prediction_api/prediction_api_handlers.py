@@ -8,7 +8,7 @@ from api.response_templates.response_template import ResponseTemplate
 from api.response_templates.success_response_template.success_response_template import \
 	SuccessResponse
 from app_utils import preprocess, get_pil_image_instance
-from config import MODEL_PATH, label_dict, log
+from config import MODEL_PATH, label_dict_val_category, log
 
 
 def handle_predict_request(request_json) -> tuple[ResponseTemplate, int]:
@@ -33,7 +33,7 @@ def handle_predict_request(request_json) -> tuple[ResponseTemplate, int]:
 		accuracy = float(np.max(prediction, axis=1)[0])
 		log.info(f"Prediction: {prediction}, Result: {result}, Accuracy: {accuracy}")
 
-		label = label_dict[result]
+		label = label_dict_val_category[result]
 
 		resp_msg = "Successfully generated the predictions."
 		resp_data = {'result': label, 'accuracy': accuracy}

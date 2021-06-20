@@ -4,12 +4,12 @@ from tensorflow.keras.layers import Concatenate
 from tensorflow.keras import Input
 from tensorflow.keras.models import Model, Sequential
 
-def get_model(input_shape):
-    inp = Input(shape=input_shape)
+def get_model1(input_shape):
+    input_layer = Input(shape=input_shape)
     convs = []
     parrallel_kernels = [3, 5, 7]
 
-    # Building the first layer of architecture
+    # Building the first layer of model1 architecture
     for kernel_size in parrallel_kernels:
         conv = Conv2D(
             filters=128,
@@ -18,13 +18,15 @@ def get_model(input_shape):
             activation='relu',
             input_shape=input_shape,
             strides=1
-        )(inp)
+        )(input_layer)
         convs.append(conv)
+    output_layer = Concatenate()(convs)
+    conv_model = Model(inputs=input_layer, outputs=output_layer)
 
-    out = Concatenate()(convs)
-    conv_model = Model(inputs=inp, outputs=out)
-
+    # Initializing a Sequential Model
     model = Sequential()
+
+    # Adding first layer of architecture to model1
     model.add(layer=conv_model)
 
     model.add(Conv2D(filters=64, kernel_size=(3, 3)))
