@@ -23,11 +23,12 @@ $("#image-selector").change(function() {
     });
 
 $("#predict-button").click(function(){
-    let message = {
+    let body = {
         image: base64Image
     }
-    console.log(message);
-    $.post("http://127.0.0.1:5000/predict", JSON.stringify(message), function(response){
+    let server_url = "http://127.0.0.1:5000"
+    let api = "/predict"
+    $.post(server_url + api, JSON.stringify(body), function(response){
         let prediction = response.data.result;
         let percentage = response.data.accuracy.toFixed(2)*100;
         $(".result").text(percentage +"% chances of " + prediction);
