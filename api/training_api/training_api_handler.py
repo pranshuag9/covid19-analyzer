@@ -11,7 +11,7 @@ from config import DATASET_DIR, MODEL_CHECKPOINT_PATH, log
 from data.architectures.model1.model1 import get_model1
 
 
-def handle_train_model_request() -> tuple[ResponseTemplate, int]:
+def handle_train_model_request(request_json) -> tuple[ResponseTemplate, int]:
     res = ResponseTemplate(error=True, success=False), 400
     try:
         data, target = load_data_from_disk(DATASET_DIR)

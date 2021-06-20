@@ -1,6 +1,7 @@
 from flask import Flask
 
 from api.prediction_api.predict import prediction_blueprint
+from api.training_api.training import training_blueprint
 
 
 def register_blueprints(app: Flask) -> None:
@@ -13,6 +14,7 @@ def register_blueprints(app: Flask) -> None:
 	with app.app_context():
 		blueprints = (
 			prediction_blueprint,
+			training_blueprint
 		)
 
 		for blueprint in blueprints:
