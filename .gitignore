@@ -3,5 +3,5 @@
 *.npy
 __pycache__/
 /dataset
-dataset/*
+data/dataset
 log.log
