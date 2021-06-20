@@ -1,6 +1,6 @@
 import numpy as np
 from PIL import Image
-from keras.models import load_model
+from tensorflow.keras.models import load_model
 
 from api.response_templates.error_response_template.error_response_template import \
 	ErrorResponse
