@@ -37,4 +37,11 @@ $("#predict-button").click(function(){
     });
 });
 
+$("#train-button").click(function(){
+    let server_url = "http://127.0.0.1:5000"
+    let api = "/train_model"
+    $.post(server_url + api,JSON.stringify({}), function(response){
+        console.log(response);
+    });
+});
    
