@@ -7,7 +7,7 @@ img_size = 100
 
 label_dict = {0: 'Covid19 Negative', 1: 'Covid19 Positive'}
 
-MODEL_PATH = 'model/model-015.model'
+MODEL_PATH = 'models/model-015.model'
 
 log_dir_path = Path(__file__).parent.absolute()
 
