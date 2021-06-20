@@ -12,7 +12,7 @@ app.config['CORS_HEADERS'] = 'application/json'
 def index():
 	return render_template("index.html")
 
-@app.route("/admin")
+@app.route("/train")
 def admin():
 	return render_template("train.html")
 
