@@ -1,4 +1,6 @@
+ /* styling for html elements */
 body{
+  margin : 0;
   background-image: url(../images/main-background.jpg);
   background-size: cover;
   background-attachment: fixed;
@@ -6,12 +8,71 @@ body{
   align-items: center;
   height: 100vh;
 }
+h3{
+    font-family: "Lato";
+    font-weight: 400;
+    color: #F9F9F9;
+}
+div{
+  text-align: center;
+}
+
+ /* styling for ids */
+
+#image-selector{
+    width: 0.1px;
+    height: 0.1px;
+    opacity: 0;
+    overflow: hidden;
+    position: absolute;
+    z-index: -1;
+}
+#image-selector + label{
+      border : none;
+			outline : none;
+			margin-top : 1em;
+			padding : 1em 1em;
+			border-radius : 4px;
+			font-family : 'Lato', Verdana, sans-serif;
+			font-weight : 900;
+			text-transform : uppercase;
+			letter-spacing : .15em;
+			background-color : transparent;
+			border : 3px solid #F2F2F8;
+			color : #F2F2F8;
+			transform : translate3D(0, 0, 0);
+			transition : color .3s, background-color .3s, transform .15s;
+			cursor : pointer;
+}
+#image-selector:focus + label,
+#image-selector + label:hover {
+        color : #212121;
+				background-color : #F2F2F8;
+				outline : none;
+}
+
+#image-selector:focus + label{
+  outline: none;
+}
+#image-selector:active + label{
+  transform : translate3D(0, 2px, 0);
+	outline: none;
+}
+
+#selected-image{
+  margin: 15px 0;
+  max-width:400px;
+  max-height: 420px;
+}
+
+ /* styling for class */
 .container {
   width: 60vw;
   height: 70vh;
   box-shadow: 0 0 1rem 0 rgba(0, 0, 0, 0.2);
   position:relative;
   background: inherit;
+  text-align: center;
 }
 
 .container:before{
@@ -25,10 +86,47 @@ body{
   filter:blur(50px);
 }
 
-div{
-  text-align: center;
+.heading{
+  font-family: "Lato";
+  font-weight: 900;
+  color: #F9F9F9;
 }
 
-.heading{
-  font-family: PT Sans;
+.button{
+    visibility : hidden;
+    transform: translate(50%, 0);
+    border : none;
+    outline : none;
+    margin-top : 1em;
+    padding : 1em 1em;
+    border-radius : 4px;
+    font-family : 'Lato', Verdana, sans-serif;
+    font-weight : 900;
+	text-transform : uppercase;
+    letter-spacing : .15em;
+    background-color : transparent;
+	border : 3px solid #F2F2F8;
+	color : #F2F2F8;
+	transform : translate3D(0, 0, 0);
+    transition : color .3s, background-color .3s, transform .15s;
+	cursor : pointer;
+}
+.button:hover{
+				color : #F2F2F8;
+				background-color : #00917C;
+				outline : none;
+}
+.button:focus{
+				outline : none;
+}
+.button:active{
+				transform : translate3D(-50%, 2px , 0);
+				outline: none;
+}
+
+.predict{
+  position: absolute;
+  left: 50%;
+  bottom: 20px;
+  transform: translateX(-50%);
 }
