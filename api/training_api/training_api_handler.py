@@ -20,6 +20,7 @@ def handle_train_model_request(request_json) -> tuple[ResponseTemplate, int]:
         data, target = load_data_from_disk(DATASET_DIR)
         input_shape = data.shape[1:]
         model = get_model1(input_shape=input_shape)
+        epoch = request_json.get("epochs", 1)
         checkpoint = ModelCheckpoint(
             filepath=MODEL_CHECKPOINT_PATH,
             monitor='val_loss',
@@ -30,8 +31,8 @@ def handle_train_model_request(request_json) -> tuple[ResponseTemplate, int]:
         history = model.fit(
             x=data,
             y=target,
-            epochs=10,
-            callbacks=[checkpoint],
+            epochs=epoch,
+            callbacks=[checkpoint]
             validation_split=0.1
         )
         total_time_taken = datetime.datetime.now() - start
@@ -42,10 +43,11 @@ def handle_train_model_request(request_json) -> tuple[ResponseTemplate, int]:
                 "loss": history.history["loss"],
                 "val_loss": history.history["val_loss"]
             },
-            "time_taken": total_time_taken
+            "time_taken_in_secs": total_time_taken.total_seconds()
         }
-        res: tuple[ResponseTemplate, int] = SuccessResponse(message=msg, data=data, type="json"), 200
+        res = SuccessResponse(message=msg, data=data, type="json"), 200
     except Exception as e:
-        res: tuple[ResponseTemplate, int] = ErrorResponse(message="Couldn't finish training!! Please try again later"), 400
+        msg = "Couldn't finish training!! Please try again later"
+        res = ErrorResponse(message=msg), 400
     log.info(f"RESPONSE: {res[0].to_dict()}")
     return res

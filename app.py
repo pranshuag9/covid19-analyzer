@@ -8,24 +8,28 @@ app = Flask(__name__)
 cors = CORS(app)
 app.config['CORS_HEADERS'] = 'application/json'
 
+
 @app.route("/")
 def index():
-	return render_template("index.html")
+    return render_template("index.html")
+
 
 @app.route("/train")
 def admin():
-	return render_template("train.html")
+    return render_template("train.html")
 
 
 def create_app() -> app:
-	with app.app_context():
-		register_blueprints(app)
-	app.app_context().push()
-	return app
+    with app.app_context():
+        register_blueprints(app)
+    app.app_context().push()
+    return app
+
 
 if __name__ == "__main__":
-	log.info("Main Called")
-	app = create_app()
-	extra_files = get_extra_files_to_watch_for_reload()
-	app.run(debug=True, extra_files=extra_files)
-	log.info("Main Call Ended")
+    log.info("Main Called")
+
+    app = create_app()
+    extra_files = get_extra_files_to_watch_for_reload()
+    app.run(debug=True, extra_files=extra_files)
+    log.info("Main Call Ended")
