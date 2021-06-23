@@ -30,8 +30,9 @@ def handle_train_model_request(request_json) -> tuple[ResponseTemplate, int]:
         history = model.fit(
             x=data,
             y=target,
-            epochs=20,
-            callbacks=[checkpoint]
+            epochs=10,
+            callbacks=[checkpoint],
+            validation_split=0.1
         )
         total_time_taken = datetime.datetime.now() - start
         msg = "Successfully trained the model"
