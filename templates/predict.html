@@ -17,7 +17,7 @@
 			<h1 class="heading">COVID-19 TESTING USING X-RAY IMAGES</h1>
             <input id="image-selector" class = "button" type="file" accept="image/*" onchange="loadFile(event)">
             <label for = "image-selector">Upload an Image</label>
-            <p><img id="selected-image"/></p>
+            <p><img id="selected-image" onload="addBorder(event)"/></p>
 
 			<h3 class = "result predict"></h3>
             <br>

@@ -12,9 +12,9 @@ current_timestamp = datetime.datetime.now(
 
 img_size = 100
 
-label_dict_category_val = {'Covid19_Negative': 0, 'Covid19_Positive': 1}
+label_dict_category_val = {'negative': 0, 'positive': 1}
 
-label_dict_val_category = {0: 'Covid19_Negative', 1: 'Covid19_Positive'}
+label_dict_val_category = {0: 'negative', 1: 'positive'}
 
 MODEL_PATH = 'models/model-015.model'
 

@@ -8,7 +8,9 @@ var loadFile = function(event){
       $(".result").css("visibility","hidden");
       $("#predict-button").css("visibility","visible");  //for predict button
 };
-
+function addBorder(event){
+    $("#selected-image").css("border","3px solid #F2F2F8"); 
+};
 $("#image-selector").change(function() {
     let reader = new FileReader();
     reader.onload = function(e) {

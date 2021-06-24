@@ -8,13 +8,20 @@ body{
   align-items: center;
   height: 100vh;
 }
-h3{
+h3,li{
     font-family: "Lato";
     font-weight: 400;
     color: #F9F9F9;
 }
 div{
   text-align: center;
+}
+
+ul{
+    list-style-type:none;
+}
+li{
+    text-align: left;
 }
 
  /* styling for ids */
@@ -30,7 +37,7 @@ div{
 #image-selector + label{
       border : none;
 			outline : none;
-			margin-top : 1em;
+			margin : 0.5em 0;
 			padding : 1em 1em;
 			border-radius : 4px;
 			font-family : 'Lato', Verdana, sans-serif;
@@ -60,6 +67,10 @@ div{
 }
 
 #selected-image{
+  position: absolute;
+  top: 53%;
+  left: 50%;
+  transform: translateY(-53%) translateX(-50%);
   margin: 15px 0;
   max-width:400px;
   max-height: 420px;
@@ -98,6 +109,7 @@ div{
   font-family: "Lato";
   font-weight: 900;
   color: #F9F9F9;
+  margin-top: 10px;
 }
 
 .button{
