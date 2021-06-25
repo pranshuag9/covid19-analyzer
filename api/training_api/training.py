@@ -10,5 +10,5 @@ training_blueprint = Blueprint("training_blueprint", __name__)
 @training_blueprint.route("/train_model", methods=["POST"])
 @response_exception_handler
 def train_model() -> tuple[ResponseTemplate, int]:
-    request_json = request.json
+    request_json = request.get_json(force=True)
     return handle_train_model_request(request_json=request_json)

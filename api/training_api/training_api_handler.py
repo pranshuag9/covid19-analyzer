@@ -20,7 +20,7 @@ def handle_train_model_request(request_json) -> tuple[ResponseTemplate, int]:
         data, target = load_data_from_disk(DATASET_DIR)
         input_shape = data.shape[1:]
         model = get_model1(input_shape=input_shape)
-        epoch = request_json.get("epochs", 2)
+        epoch = request_json.get("epochs", 1)
         checkpoint = ModelCheckpoint(
             filepath=MODEL_CHECKPOINT_PATH,
             monitor='val_loss',
