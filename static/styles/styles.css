@@ -8,13 +8,20 @@ body{
   align-items: center;
   height: 100vh;
 }
-h3{
+h3,li{
     font-family: "Lato";
     font-weight: 400;
     color: #F9F9F9;
 }
 div{
   text-align: center;
+}
+
+ul{
+    list-style-type:none;
+}
+li{
+    text-align: left;
 }
 
  /* styling for ids */
@@ -30,7 +37,7 @@ div{
 #image-selector + label{
       border : none;
 			outline : none;
-			margin-top : 1em;
+			margin : 0.5em 0;
 			padding : 1em 1em;
 			border-radius : 4px;
 			font-family : 'Lato', Verdana, sans-serif;
@@ -60,9 +67,13 @@ div{
 }
 
 #selected-image{
+  position: absolute;
+  top: 53.5%;
+  left: 50%;
+  transform: translateY(-53.5%) translateX(-50%);
   margin: 15px 0;
   max-width:400px;
-  max-height: 420px;
+  max-height: 415px;
 }
 
 #train-button{
@@ -98,26 +109,27 @@ div{
   font-family: "Lato";
   font-weight: 900;
   color: #F9F9F9;
+  margin-top: 10px;
 }
 
 .button{
-    visibility : hidden;
-    transform: translate(50%, 0);
-    border : none;
-    outline : none;
-    margin-top : 1em;
-    padding : 1em 1em;
-    border-radius : 4px;
-    font-family : 'Lato', Verdana, sans-serif;
-    font-weight : 900;
-	text-transform : uppercase;
-    letter-spacing : .15em;
-    background-color : transparent;
-	border : 3px solid #F2F2F8;
-	color : #F2F2F8;
-	transform : translate3D(0, 0, 0);
-    transition : color .3s, background-color .3s, transform .15s;
-	cursor : pointer;
+  visibility : hidden;
+  transform: translate(50%, 0);
+  border : none;
+  outline : none;
+  margin : 0.5em 0 0.4em;
+  padding : 1em 1em;
+  border-radius : 4px;
+  font-family : 'Lato', Verdana, sans-serif;
+  font-weight : 900;
+  text-transform : uppercase;
+  letter-spacing : .15em;
+  background-color : transparent;
+  border : 3px solid #F2F2F8;
+  color : #F2F2F8;
+  transform : translate3D(0, 0, 0);
+  transition : color .3s, background-color .3s, transform .15s;
+  cursor : pointer;
 }
 .button:hover{
 				color : #F2F2F8;
