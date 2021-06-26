@@ -34,7 +34,8 @@ $("#predict-button").click(function(){
     let api = "/predict"
     $.post(server_url + api, JSON.stringify(body), function(response){
         let prediction = response.data.result;
-        let percentage = response.data.accuracy.toFixed(2)*100;
+        let percentage = response.data.accuracy * 100;
+        percentage = percentage.toFixed();
         $(".result").text(percentage +"% chances of " + prediction);
         $("#predict-button").css("visibility","hidden");
         $(".result").css("visibility","visible");
