@@ -16,7 +16,7 @@ label_dict_category_val = {'negative': 0, 'positive': 1}
 
 label_dict_val_category = {0: 'negative', 1: 'positive'}
 
-MODEL_PATH = 'models/model-015.model'
+MODEL_PATH = 'models/checkpoints/2021-06-24-01-13-18/model-008.model'
 
 MODEL_CHECKPOINT_PATH = f'models/checkpoints/{current_timestamp}/'+'model-{epoch:03d}.model'
 
