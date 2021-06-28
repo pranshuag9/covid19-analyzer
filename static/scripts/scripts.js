@@ -1,3 +1,8 @@
+function showMenu(event){
+    const navbarLinks = $(".navbar-links")[0];
+    navbarLinks.classList.toggle("active");
+}
+
 let base64Image;
 var loadFile = function(event){
     let image = $("#selected-image");
