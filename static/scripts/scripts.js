@@ -1,3 +1,8 @@
+function showMenu(event){
+    const navbarLinks = $(".navbar-links")[0];
+    navbarLinks.classList.toggle("active");
+}
+
 let base64Image;
 var loadFile = function(event){
     let image = $("#selected-image");
@@ -31,10 +36,11 @@ $("#predict-button").click(function(){
         image: base64Image
     }
     let server_url = "http://127.0.0.1:5000"
-    let api = "/predict"
+    let api = "/cxra/predict"
     $.post(server_url + api, JSON.stringify(body), function(response){
         let prediction = response.data.result;
-        let percentage = response.data.accuracy.toFixed(2)*100;
+        let percentage = response.data.accuracy * 100;
+        percentage = percentage.toFixed();
         $(".result").text(percentage +"% chances of " + prediction);
         $("#predict-button").css("visibility","hidden");
         $(".result").css("visibility","visible");
@@ -42,10 +48,22 @@ $("#predict-button").click(function(){
 });
 
 $("#train-button").click(function(){
-    let server_url = "http://127.0.0.1:5000"
-    let api = "/train_model"
-    $.post(server_url + api,JSON.stringify({}), function(response){
+    let epoch = $(".inputBox .text")[1].value;
+    let server_url = "http://127.0.0.1:5000";
+    let api = "/train_model";
+    let trainingTimeGpu = (epoch*3)+2;//+2 for loading libraries min
+    let trainingTimeCpu = (epoch*30) + 2;
+    $(".inputBox").css("visibility","hidden");
+    $("#train-button").css("visibility","hidden");
+    //intermidiate bar show
+    $(".training-time").css("visibility","visible");
+    $(".container-progress-bar").css("visibility","visible");
+    $.post(server_url + api,JSON.stringify({"epochs":epoch}), function(response){
         console.log(response);
+        $(".training-time").css("visibility","visible");
+        $(".container-progress-bar").css("visibility","hidden");
+        $(".result").css("visibility","hidden");
+        $(".result").text("Model Trained!");
     });
 });
    
