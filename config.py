@@ -8,7 +8,7 @@ import pytz as pytz
 import custom_logging_config
 
 training_type = "GPU" if tf.test.gpu_device_name() else "CPU"
-training_time = 32 if tf.test.gpu_device_name() else 5
+training_time = 5 if tf.test.gpu_device_name() else 32
 
 current_timestamp = datetime.datetime.now(
 	tz=pytz.timezone("Asia/Kolkata")
