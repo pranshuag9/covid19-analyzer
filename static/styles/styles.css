@@ -303,7 +303,10 @@ input[type=number]::-webkit-outer-spin-button {
 }
 
 .container-progress-bar {
-  width: 400px;
+  position: absolute;
+  width: 45%;
+  left: 50%;
+  transform: translateX(-50%);
   margin: 20px auto 0;
   visibility: hidden;
 }
@@ -385,8 +388,15 @@ input[type=number]::-webkit-outer-spin-button {
   .navbar-links.active{
     display: flex;
   }
-  .button{
+  .heading{
+    font-size: 1.7rem;
+  }
+  #image-selector + label , .button{
     padding : 0.6em 0.6em;
+  }
+  #selected-image{
+    top: 58%;
+    max-width: 57%;
   }
 }
 
@@ -399,6 +409,7 @@ input[type=number]::-webkit-outer-spin-button {
 }
 
 @media (max-height:900px) {
+  
   #train-button{
     top : auto;
     bottom: 10%;
