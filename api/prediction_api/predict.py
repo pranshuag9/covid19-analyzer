@@ -3,7 +3,7 @@ from flask import Blueprint, request
 from api.decorators.exception_handlers.response_exception_handlers import \
 	response_exception_handler
 from api.prediction_api.prediction_api_handlers import handle_predict_request
-prediction_blueprint = Blueprint("prediction_blueprint", __name__)
+prediction_blueprint = Blueprint("prediction_blueprint", __name__, url_prefix="/cxra")
 
 
 @prediction_blueprint.route("/predict", methods=["POST"])

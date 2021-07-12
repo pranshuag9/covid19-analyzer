@@ -1,6 +1,5 @@
 import datetime
 
-from sklearn.model_selection import train_test_split
 from tensorflow.python.keras.callbacks import ModelCheckpoint
 
 from api.response_templates.error_response_template.error_response_template import \

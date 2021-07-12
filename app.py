@@ -1,5 +1,7 @@
 from flask import Flask, render_template
 from flask_cors import CORS
+
+import config
 from api.register_blueprints import register_blueprints
 from app_utils import get_extra_files_to_watch_for_reload
 from config import log
@@ -20,7 +22,11 @@ def predict():
 
 @app.route("/train")
 def admin():
-    return render_template("train.html")
+    return render_template(
+        template_name_or_list="train.html",
+        train_type=config.training_type,
+        train_time=config.training_time
+    )
 
 
 def create_app() -> app:

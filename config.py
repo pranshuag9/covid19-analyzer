@@ -1,10 +1,14 @@
 import datetime
 import logging
+import tensorflow as tf
 from pathlib import Path
 
 import pytz as pytz
 
 import custom_logging_config
+
+training_type = "GPU" if tf.test.gpu_device_name() else "CPU"
+training_time = 32 if tf.test.gpu_device_name() else 5
 
 current_timestamp = datetime.datetime.now(
 	tz=pytz.timezone("Asia/Kolkata")
