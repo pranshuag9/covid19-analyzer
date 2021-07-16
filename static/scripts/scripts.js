@@ -35,13 +35,13 @@ $("#predict-button").click(function(){
     let body = {
         image: base64Image
     }
-    let server_url = "http://127.0.0.1:5000"
-    let api = "/cxra/predict"
+    let server_url = "http://127.0.0.1:5000";
+    let api = "/cxra/predict";
     $.post(server_url + api, JSON.stringify(body), function(response){
         let prediction = response.data.result;
         let percentage = response.data.accuracy * 100;
         percentage = percentage.toFixed();
-        $(".result").text(percentage +"% chances of " + prediction);
+        $(".result").text(percentage +"% chances of Covid " + prediction);
         $("#predict-button").css("visibility","hidden");
         $(".result").css("visibility","visible");
     });
@@ -51,19 +51,42 @@ $("#train-button").click(function(){
     let epoch = $(".inputBox .text")[1].value;
     let server_url = "http://127.0.0.1:5000";
     let api = "/train_model";
-    let trainingTimeGpu = (epoch*3)+2;//+2 for loading libraries min
-    let trainingTimeCpu = (epoch*30) + 2;
+    let rawText = $(".training-time").text();
+    let device = rawText.substr(25,3);
+    let totalTime = 0;
+    if(device == "GPU"){
+        totalTime = (epoch*3) + 2;
+    }
+    else{
+        totalTime = (epoch*30) + 2;
+    }
+    let trainingSession = "";
+    if(epoch>1){
+        trainingSession = " for " +epoch +" training sessions is ";
+    }else{
+        trainingSession = " for " +epoch +" training session is ";
+    }
+    let trainingText = rawText + trainingSession;
+    if(totalTime > 60){
+        totalTime = totalTime/60;
+        totalTime = totalTime.toFixed()
+        trainingText += totalTime + " hours."
+    }else{
+        trainingText += totalTime + " minutes."
+    }
     $(".inputBox").css("visibility","hidden");
     $("#train-button").css("visibility","hidden");
-    //intermidiate bar show
+    $(".training-time").text(trainingText);
     $(".training-time").css("visibility","visible");
     $(".container-progress-bar").css("visibility","visible");
     $.post(server_url + api,JSON.stringify({"epochs":epoch}), function(response){
         console.log(response);
         $(".training-time").css("visibility","visible");
         $(".container-progress-bar").css("visibility","hidden");
-        $(".result").css("visibility","hidden");
+        $(".training-time").css("visibility","hidden");
         $(".result").text("Model Trained!");
+        $(".result").css("visibility","visible");
+        
     });
 });
    
