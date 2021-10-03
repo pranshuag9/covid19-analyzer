@@ -7,3 +7,6 @@ data/dataset
 log.log
 models/checkpoints
 /.vscode
+
+
+/http/web/app/node_modules
