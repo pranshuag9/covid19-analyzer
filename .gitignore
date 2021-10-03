@@ -10,3 +10,4 @@ models/checkpoints
 
 
 /http/web/app/node_modules
+/http/web/app/.idea
